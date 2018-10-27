@@ -5,5 +5,11 @@ module.exports = {
 			plugins: ['vuelidate']
 		}
 	},
-	transpileDependencies: [/[\\\/]node_modules[\\\/]quasar-framework[\\\/]/]
+	transpileDependencies: [/[\\\/]node_modules[\\\/]quasar-framework[\\\/]/],
+	configureWebpack: {
+		// No need for splitting
+		optimization: {
+			splitChunks: false
+		}
+	}
 }

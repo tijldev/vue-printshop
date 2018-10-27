@@ -32,7 +32,7 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {
-		submitPrint({ commit, state, getters }) {
+		submitPrint({ state, getters }) {
 			const productDescription = {
 				bestand: getters['image/imageName'],
 				hoogte: getters['paper/height'] + 'mm',

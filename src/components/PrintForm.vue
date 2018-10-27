@@ -1,7 +1,12 @@
 <template>
-	<div class="print-form">
+	<div
+		class="print-form"
+		id="print-form"
+		ref="printForm">
 		<h4>Bestel je print</h4>
-		<q-stepper ref="stepper">
+		<q-stepper
+			ref="stepper"
+			:vertical="isMobile">
 			<q-step
 				default
 				title="Upload">
@@ -119,21 +124,35 @@ export default {
 		AddToCartButton
 	},
 	data() {
-		return {}
+		return {
+			componentWidth: 0
+		}
 	},
 	computed: {
 		...mapGetters({ imageSource: 'image/imageSource' }),
 		fileSelected() {
 			return this.imageSource
+		},
+		isMobile() {
+			return this.componentWidth < 745
 		}
 	},
 	mounted() {
-		// this.$refs.stepper.goToStep('overview')
+		this.componentWidth = this.$refs.printForm.clientWidth
+		window.addEventListener('resize', () => {
+			this.componentWidth = this.$refs.printForm.clientWidth
+		})
 	}
 }
 </script>
 
-<style>
+<style scoped lang="scss">
+#print-form {
+	all: initial;
+	* {
+		all: unset;
+	}
+}
 .price {
 	text-align: right;
 	display: block;

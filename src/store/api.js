@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const wpapi = axios.create({
-	baseURL: 'http://demakersnieuw.local/wp-json'
+	baseURL: 'https://demakersbureau.be/wp-json'
 })
 
 export default {
