@@ -35,7 +35,7 @@ export default new Vuex.Store({
 		submitPrint({ commit, state, getters }) {
 			const productDescription = {
 				bestand: getters['image/imageName'],
-				hoogte: state.paper.height + 'mm',
+				hoogte: getters['paper/height'] + 'mm',
 				breedte: state.paper.width + 'mm',
 				papiersoort: getters['paper/paperType'].name,
 				montage: getters['montage/montageType'].name,
@@ -43,14 +43,14 @@ export default new Vuex.Store({
 			}
 			const price = getters['totalPrice']
 			const name = `Fotoprint (${getters['image/imageName']})`
-			const croppedImageFile = state.image.croppedImage
+			const imageFile = state.image.imageFile
 
 			return new Promise((resolve, reject) => {
 				api.createProduct(
 					name,
 					price,
-					JSON.stringify(productDescription),
-					croppedImageFile
+					JSON.stringify(productDescription, null, '\t'),
+					imageFile
 				)
 					.then(response => {
 						const productId = response.data.id

@@ -1,14 +1,24 @@
 <template>
 	<div class="step-finish">
 		<div class="row">
-			<image-preview class="col-12 col-md-4" :src="croppedImageSource"></image-preview>
+			<image-preview 
+				class="col-12 col-md-4" 
+				:src="imageSource"></image-preview>
 			<div class="form col-12 col-md-8 q-px-md">
 				<overview-list></overview-list>
-				<q-scroll-area class="paper-list" style="height: 200px;">
+				<q-scroll-area 
+					class="paper-list" 
+					style="height: 200px;">
 					<q-list link>
-						<q-item tag="label" v-for="(item, index) in montageOptions" :key="index" separator >
+						<q-item 
+							tag="label" 
+							v-for="(item, index) in montageOptions" 
+							:key="index" 
+							separator >
 							<q-item-side>
-								<q-radio v-model="selectedMontageIndex" :val="index"  ></q-radio>
+								<q-radio 
+									v-model="selectedMontageIndex" 
+									:val="index"  ></q-radio>
 							</q-item-side>
 							<q-item-main>
 								<q-item-tile label>{{ item.name }}</q-item-tile>
@@ -34,13 +44,12 @@ export default {
 	},
 	computed: {
 		...mapState({
-			croppedImage: state => state.image.croppedImage,
 			paperWidth: state => state.paper.width,
 			montageTypes: state => state.montage.montageTypes
 		}),
 		...mapGetters({
 			paperSurface: 'paper/surface',
-			croppedImageSource: 'image/croppedImageSource'
+			imageSource: 'image/imageSource'
 		}),
 		selectedMontageIndex: {
 			get() {

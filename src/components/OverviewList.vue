@@ -15,14 +15,14 @@ export default {
 	computed: {
 		...mapState(['croppedImage', 'paperDimensions', 'montageTypes']),
 		...mapState({
-			paperWidth: state => state.paper.width,
-			paperHeight: state => state.paper.height
+			paperWidth: state => state.paper.width
 		}),
 		...mapGetters({
 			imageName: 'image/imageName',
 			imageResolution: 'image/imageResolution',
 			paperType: 'paper/paperType',
-			montageType: 'montage/montageType'
+			montageType: 'montage/montageType',
+			paperHeight: 'paper/height'
 		})
 	}
 }

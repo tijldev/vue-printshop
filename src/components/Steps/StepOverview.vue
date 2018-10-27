@@ -1,6 +1,8 @@
 <template>
 	<div class="step-overview row">
-		<image-preview class="col-12 col-md-4" :src="croppedImageSource"></image-preview>
+		<image-preview 
+			class="col-12 col-md-4" 
+			:src="imageSource"></image-preview>
 		<div class="form col-12 col-md-8 q-px-md">
 			<overview-list></overview-list>
 			<q-input
@@ -24,11 +26,8 @@ export default {
 		OverviewList
 	},
 	computed: {
-		...mapState({
-			croppedImage: state => state.image.croppedImage
-		}),
 		...mapGetters({
-			croppedImageSource: 'image/croppedImageSource'
+			imageSource: 'image/imageSource'
 		}),
 		orderNotes: {
 			get() {

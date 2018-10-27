@@ -1,6 +1,10 @@
 <template>
 	<div class="add-to-cart-button">
-		<q-btn color="positive" @click="addToCart" label="In winkelmand" icon="shopping_cart" ></q-btn>
+		<q-btn
+			color="positive"
+			@click="addToCart"
+			label="In winkelmand"
+			icon="shopping_cart" ></q-btn>
 		<q-dialog
 			v-model="isSuccess"
 			stack-buttons
@@ -10,9 +14,17 @@
 
 			<span slot="message">Uw print werd toegevoegd aan de winkelmand.</span>
 
-			<template slot="buttons" slot-scope="props">
-				<q-btn color="positive" label="Winkelmand" @click="goToShoppingCart" ></q-btn>
-				<q-btn color="primary" label="Voeg nog een print toe" @click="goToNewPrint" ></q-btn>
+			<template
+				slot="buttons"
+				slot-scope="props">
+				<q-btn
+					color="positive"
+					label="Winkelmand"
+					@click="goToShoppingCart" ></q-btn>
+				<q-btn
+					color="primary"
+					label="Voeg nog een print toe"
+					@click="goToNewPrint" ></q-btn>
 			</template>
 		</q-dialog>
 	</div>
@@ -40,7 +52,9 @@ export default {
 		},
 		...mapActions(['submitPrint']),
 		addToCart() {
-			this.$q.loading.show({})
+			this.$q.loading.show({
+				message: 'Uw print wordt geüpload. Dit kan even duren.'
+			})
 			this.submitPrint()
 				.then(() => {
 					this.$q.loading.hide()

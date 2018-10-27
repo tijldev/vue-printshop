@@ -1,14 +1,26 @@
 <template>
 	<div class="step-paper">
 		<div class="row">
-			<image-preview class="col-12 col-md-4" :src="croppedImageSource"></image-preview>
+			<image-preview 
+				class="col-12 col-md-4" 
+				:src="imageSource"></image-preview>
 			<div class="form col-12 col-md-8 q-px-md">
 				<overview-list></overview-list>
-				<q-scroll-area class="paper-list" style="height: 200px;">
+				<q-scroll-area 
+					class="paper-list" 
+					style="height: 200px;">
 					<q-list link>
-						<q-item tag="label" v-for="(item, index) in paperOptions" :key="index" separator :disabled="item.disabled" >
+						<q-item 
+							tag="label" 
+							v-for="(item, index) in paperOptions" 
+							:key="index" 
+							separator 
+							:disabled="item.disabled" >
 							<q-item-side>
-								<q-radio v-model="selectedPaperIndex" :val="index" :disable="item.disabled" ></q-radio>
+								<q-radio 
+									v-model="selectedPaperIndex" 
+									:val="index" 
+									:disable="item.disabled" ></q-radio>
 							</q-item-side>
 							<q-item-main>
 								<q-item-tile label>{{ item.name }}</q-item-tile>
@@ -34,13 +46,12 @@ export default {
 	},
 	computed: {
 		...mapState({
-			croppedImage: state => state.image.croppedImage,
 			paperWidth: state => state.paper.width,
 			paperTypes: state => state.paper.paperTypes
 		}),
 		...mapGetters({
 			paperSurface: 'paper/surface',
-			croppedImageSource: 'image/croppedImageSource'
+			imageSource: 'image/imageSource'
 		}),
 		selectedPaperIndex: {
 			get() {

@@ -1,16 +1,8 @@
 // initial state
 const state = {
 	imageFile: null,
-	croppedImage: null,
-	cropData: {
-		x: 0,
-		y: 0,
-		scaleX: 1,
-		scaleY: 1,
-		rotate: 0,
-		width: 300,
-		height: 300
-	}
+	width: 0,
+	height: 0
 }
 
 // getters
@@ -20,24 +12,18 @@ const getters = {
 			return URL.createObjectURL(state.imageFile)
 		}
 	},
-	croppedImageSource: state => {
-		if (state.croppedImage !== null) {
-			return URL.createObjectURL(state.croppedImage)
-		}
-	},
 	imageName: state => {
 		if (state.imageFile !== null) {
 			return state.imageFile.name
 		}
 	},
-	aspectRatio: (state, getters, rootState) => {
-		return rootState.paper.width / rootState.paper.height
+	aspectRatio: state => {
+		return state.width / state.height
 	},
 	imageResolution: (state, getters, rootState) => {
 		return (
 			Math.round(
-				(100 * state.cropData.width) /
-					(rootState.paper.width * 0.0393700787)
+				(100 * state.width) / (rootState.paper.width * 0.0393700787)
 			) / 100
 		)
 	}
@@ -47,16 +33,26 @@ const mutations = {
 	updateImageFile(state, value) {
 		state.imageFile = value
 	},
-	updateCropData(state, value) {
-		state.cropData = value
+	updateHeight(state, value) {
+		state.height = value
 	},
-	updateCroppedImage(state, value) {
-		state.croppedImage = value
+	updateWidth(state, value) {
+		state.width = value
 	}
 }
 
 // actions
-const actions = {}
+const actions = {
+	loadImage({ commit }, fileObject) {
+		commit('updateImageFile', fileObject)
+		const image = new Image()
+		image.src = URL.createObjectURL(fileObject)
+		image.addEventListener('load', () => {
+			commit('updateHeight', image.height)
+			commit('updateWidth', image.width)
+		})
+	}
+}
 
 export default {
 	namespaced: true,

@@ -1,9 +1,9 @@
 <template>
 	<div class="paper-chooser">
-    <div class="content">
-      <img :src="src">
-    </div>
-  </div>
+		<div class="content">
+			<img :src="src">
+		</div>
+	</div>
 </template>
 
 <script>

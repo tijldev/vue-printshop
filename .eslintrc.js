@@ -17,6 +17,16 @@ module.exports = {
 				ignores: []
 			}
 		],
+		'vue/max-attributes-per-line': [
+			2,
+			{
+				singleline: 1,
+				multiline: {
+					max: 1,
+					allowFirstLine: false
+				}
+			}
+		],
 		'vue/html-self-closing': [
 			'error',
 			{
